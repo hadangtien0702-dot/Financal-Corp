@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, ExternalLink, ShieldCheck, Quote } from 'lucide-react';
@@ -20,6 +21,37 @@ const testimonials = [
     quote: "Transitioning from a captive agency to American Finance Corp gave me the freedom I always wanted. I own my book of business now.",
     author: "James Wilson", role: "Regional Director", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
   },
+];
+
+const products = [
+    {
+        title: "IUL Secrets",
+        desc: "Indexed Universal Life insurance offering flexible permanent protection with cash value growth potential.",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/IUL.png",
+        link: "https://thinksmartinsurance.com/iul-2",
+        color: "blue"
+    },
+    {
+        title: "Millionaire Baby",
+        desc: "Strategies designed to jumpstart your child's financial future with compound interest and tax advantages.",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Baby%20Milione.png",
+        link: "https://thinksmartinsurance.com",
+        color: "cyan"
+    },
+    {
+        title: "Term-Life",
+        desc: "Affordable, straightforward coverage for a set period to protect your family's financial obligations like mortgages and income.",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110323.png",
+        link: "https://thinksmartinsurance.com",
+        color: "blue"
+    },
+    {
+        title: "Max-Funded IUL",
+        desc: "Strategies structured to maximize cash value accumulation for potential tax-free retirement income.",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Max-Funded.png",
+        link: "https://thinksmartinsurance.com/max-funded-iul-secrets-2",
+        color: "cyan"
+    }
 ];
 
 export const HomePage: React.FC = () => {
@@ -175,102 +207,59 @@ export const HomePage: React.FC = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-24 md:mb-32">
+          <div className="text-center mb-16 md:mb-24">
             <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-bold uppercase tracking-widest backdrop-blur-sm shadow-[0_0_15px_rgba(59,130,246,0.2)]">Exclusive Financial Solutions</div>
             <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Portfolio</span></h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">Explore our specialized strategies designed to maximize wealth, protect assets, and secure your family's legacy.</p>
           </div>
 
-          <div className="flex flex-col gap-24 md:gap-32">
-
-            {/* Product 1 */}
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 group">
-              <div className="w-full lg:w-1/2 relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/20 rounded-full blur-[80px] transition-all duration-700 group-hover:bg-blue-500/30 pointer-events-none opacity-0 group-hover:opacity-100"></div>
-                <div className="relative z-10 transform transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2 perspective-1000">
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-700/50 bg-slate-800/40 backdrop-blur-md p-8 md:p-12 flex items-center justify-center min-h-[350px]">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <img src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/IUL.png" alt="IUL Secrets" className="w-auto h-auto max-h-96 max-w-full object-contain drop-shadow-2xl relative z-10" />
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {products.map((product, index) => (
+                <div key={index} className="group relative bg-slate-900/40 backdrop-blur-md border border-slate-700/50 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/20 flex flex-col">
+                    <div className="relative h-72 md:h-80 w-full p-8 flex items-center justify-center bg-slate-950/30 overflow-hidden">
+                         <div className={`absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/90 z-10 transition-opacity duration-300 ${product.color === 'blue' ? 'group-hover:to-blue-900/40' : 'group-hover:to-cyan-900/40'}`}></div>
+                         {/* Glow effect behind image */}
+                         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 ${product.color === 'blue' ? 'bg-blue-600/10' : 'bg-cyan-600/10'} rounded-full blur-[50px] group-hover:blur-[70px] transition-all duration-700`}></div>
+                         
+                         <img 
+                            src={product.image} 
+                            alt={product.title} 
+                            className="relative z-20 h-full w-auto object-contain drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-2" 
+                         />
+                    </div>
+                    
+                    <div className="p-8 flex flex-col flex-grow relative z-20">
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className={`h-px w-10 ${product.color === 'blue' ? 'bg-blue-500' : 'bg-cyan-500'}`}></span>
+                            <span className={`${product.color === 'blue' ? 'text-blue-400' : 'text-cyan-400'} font-bold uppercase tracking-widest text-xs`}>
+                                Featured Product 0{index + 1}
+                            </span>
+                        </div>
+                        
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-blue-100 transition-colors">
+                            {product.title}
+                        </h3>
+                        
+                        <p className="text-slate-400 mb-8 leading-relaxed flex-grow">
+                            {product.desc}
+                        </p>
+                        
+                        <a 
+                            href={product.link} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className={`relative inline-flex items-center gap-2 font-bold transition-all duration-300 group/btn w-fit ${product.color === 'blue' ? 'text-blue-400 hover:text-blue-300' : 'text-cyan-400 hover:text-cyan-300'}`}
+                        >
+                            Learn More 
+                            <ExternalLink className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${product.color === 'blue' ? 'bg-blue-400' : 'bg-cyan-400'} transition-all duration-300 group-hover/btn:w-full`}></span>
+                        </a>
+                    </div>
                 </div>
-              </div>
-              <div className="w-full lg:w-1/2">
-                <div className="flex items-center gap-3 mb-4"><span className="h-px w-12 bg-gradient-to-r from-blue-500 to-transparent"></span><span className="text-blue-400 font-bold uppercase tracking-widest text-sm">Featured Product 01</span></div>
-                <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight group-hover:text-blue-200 transition-colors">IUL Secrets</h3>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">Indexed Universal Life insurance offering flexible permanent protection with cash value growth potential.</p>
-                <a href="https://thinksmartinsurance.com/iul-2" target="_blank" rel="noreferrer" className="relative inline-flex items-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-transparent border border-blue-500 rounded-full hover:bg-blue-600 hover:border-blue-600 group/btn overflow-hidden">
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1s_infinite]"></span>
-                  Learn More <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-
-            {/* Product 2 (Reverse) */}
-            <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24 group">
-              <div className="w-full lg:w-1/2 relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-cyan-600/20 rounded-full blur-[80px] transition-all duration-700 group-hover:bg-cyan-500/30 pointer-events-none opacity-0 group-hover:opacity-100"></div>
-                <div className="relative z-10 transform transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2 perspective-1000">
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-700/50 bg-slate-800/40 backdrop-blur-md p-8 md:p-12 flex items-center justify-center min-h-[350px]">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <img src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Baby%20Milione.png" alt="Millionaire Baby" className="w-auto h-auto max-h-96 max-w-full object-contain drop-shadow-2xl relative z-10" />
-                  </div>
-                </div>
-              </div>
-              <div className="w-full lg:w-1/2">
-                <div className="flex items-center gap-3 mb-4"><span className="h-px w-12 bg-gradient-to-r from-cyan-500 to-transparent"></span><span className="text-cyan-400 font-bold uppercase tracking-widest text-sm">Featured Product 02</span></div>
-                <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight group-hover:text-cyan-200 transition-colors">Millionaire Baby</h3>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">Strategies designed to jumpstart your child's financial future with compound interest and tax advantages.</p>
-                <a href="https://thinksmartinsurance.com" target="_blank" rel="noreferrer" className="relative inline-flex items-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-transparent border border-cyan-500 rounded-full hover:bg-cyan-600 hover:border-cyan-600 group/btn">
-                  Learn More <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-
-            {/* Product 3 */}
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 group">
-              <div className="w-full lg:w-1/2 relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/20 rounded-full blur-[80px] transition-all duration-700 group-hover:bg-blue-500/30 pointer-events-none opacity-0 group-hover:opacity-100"></div>
-                <div className="relative z-10 transform transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2 perspective-1000">
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-700/50 bg-slate-800/40 backdrop-blur-md p-8 md:p-12 flex items-center justify-center min-h-[350px]">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <img src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110323.png" alt="Term-Life" className="w-auto h-auto max-h-96 max-w-full object-contain drop-shadow-2xl relative z-10 rounded-md" />
-                  </div>
-                </div>
-              </div>
-              <div className="w-full lg:w-1/2">
-                <div className="flex items-center gap-3 mb-4"><span className="h-px w-12 bg-gradient-to-r from-blue-500 to-transparent"></span><span className="text-blue-400 font-bold uppercase tracking-widest text-sm">Featured Product 03</span></div>
-                <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight group-hover:text-blue-200 transition-colors">Term-Life</h3>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">Affordable, straightforward coverage for a set period to protect your family's financial obligations like mortgages and income.</p>
-                <a href="https://thinksmartinsurance.com" target="_blank" rel="noreferrer" className="relative inline-flex items-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-transparent border border-blue-500 rounded-full hover:bg-blue-600 hover:border-blue-600 group/btn">
-                  Learn More <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-
-            {/* Product 4 (Reverse) */}
-            <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24 group">
-              <div className="w-full lg:w-1/2 relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-cyan-600/20 rounded-full blur-[80px] transition-all duration-700 group-hover:bg-cyan-500/30 pointer-events-none opacity-0 group-hover:opacity-100"></div>
-                <div className="relative z-10 transform transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2 perspective-1000">
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-700/50 bg-slate-800/40 backdrop-blur-md p-8 md:p-12 flex items-center justify-center min-h-[350px]">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <img src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Max-Funded.png" alt="Max-Funded IUL" className="w-auto h-auto max-h-96 max-w-full object-contain drop-shadow-2xl relative z-10" />
-                  </div>
-                </div>
-              </div>
-              <div className="w-full lg:w-1/2">
-                <div className="flex items-center gap-3 mb-4"><span className="h-px w-12 bg-gradient-to-r from-cyan-500 to-transparent"></span><span className="text-cyan-400 font-bold uppercase tracking-widest text-sm">Featured Product 04</span></div>
-                <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight group-hover:text-cyan-200 transition-colors">Max-Funded IUL</h3>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">Strategies structured to maximize cash value accumulation for potential tax-free retirement income.</p>
-                <a href="https://thinksmartinsurance.com/max-funded-iul-secrets-2" target="_blank" rel="noreferrer" className="relative inline-flex items-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-transparent border border-cyan-500 rounded-full hover:bg-cyan-600 hover:border-cyan-600 group/btn">
-                  Learn More <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-
+            ))}
           </div>
 
-          <div className="mt-32 text-center border-t border-slate-800 pt-16">
+          <div className="mt-24 text-center border-t border-slate-800 pt-16">
             <p className="text-slate-400 mb-6">Looking for a custom solution?</p>
             <a href="https://thinksmartinsurance.com" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 text-blue-400 hover:text-blue-300 font-bold text-lg transition-colors group">
               View Full Product Catalog <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

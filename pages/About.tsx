@@ -1,6 +1,45 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Target, TrendingUp, Shield, Users, CheckCircle } from 'lucide-react';
+import { Target, TrendingUp, Shield, Users, CheckCircle, Linkedin, Mail } from 'lucide-react';
+
+const teamMembers = [
+    {
+        name: "Quoc 'Leon' Tran",
+        role: "Founder & CEO",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/total_rev.jpg"
+    },
+    {
+        name: "Gina",
+        role: "Elite Agent",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Gina.jpg"
+    },
+    {
+        name: "Celine",
+        role: "Elite Agent",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Celine.jpg"
+    },
+    {
+        name: "Ty Trieu",
+        role: "Elite Agent",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Ty%20Trieu.jpg"
+    },
+    {
+        name: "Vicky Trieu",
+        role: "Elite Agent",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Vicky%20Trieu.jpg"
+    },
+    {
+        name: "Ha",
+        role: "Elite Agent",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Ha.jpg"
+    },
+    {
+        name: "Hung",
+        role: "Elite Agent",
+        image: "https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/Hung.jpg"
+    }
+];
 
 export const AboutPage: React.FC = () => {
   return (
@@ -74,6 +113,54 @@ export const AboutPage: React.FC = () => {
                 </div>
             ))}
           </div>
+        </div>
+
+        {/* MEET THE TEAM SECTION - SCROLLING CAROUSEL */}
+        <div className="mb-20 md:mb-28 overflow-hidden">
+            <div className="text-center mb-12">
+                <div className="inline-block px-3 py-1 rounded-full bg-blue-50 text-primary font-bold text-xs uppercase tracking-widest mb-4">Leadership</div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Meet Our Team</h2>
+                <p className="text-gray-600 mt-4 max-w-2xl mx-auto">Our diverse team of experts is dedicated to your financial success and professional growth.</p>
+            </div>
+            
+            <div className="relative w-full">
+                <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                
+                <div className="flex animate-scroll pause-on-hover w-max">
+                    {/* Render list twice for seamless looping */}
+                    {[...teamMembers, ...teamMembers].map((member, idx) => (
+                        <div key={idx} className="w-72 md:w-80 mx-4 flex-shrink-0 group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                            <div className="aspect-[4/5] overflow-hidden bg-gray-100 relative">
+                                {/* Overlay on hover */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex flex-col justify-end p-6">
+                                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                        <div className="flex space-x-3 mb-2">
+                                            <button className="bg-white/20 hover:bg-white text-white hover:text-primary p-2 rounded-full backdrop-blur-sm transition-colors">
+                                                <Linkedin className="w-5 h-5" />
+                                            </button>
+                                            <button className="bg-white/20 hover:bg-white text-white hover:text-primary p-2 rounded-full backdrop-blur-sm transition-colors">
+                                                <Mail className="w-5 h-5" />
+                                            </button>
+                                        </div>
+                                        <p className="text-white/90 text-sm">Dedicated to excellence.</p>
+                                    </div>
+                                </div>
+                                
+                                <img 
+                                    src={member.image} 
+                                    alt={member.name} 
+                                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" 
+                                />
+                            </div>
+                            <div className="p-6 relative z-20 bg-white">
+                                <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">{member.name}</h3>
+                                <p className="text-sm font-medium text-gray-500 uppercase tracking-wide mt-1">{member.role}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
 
         {/* Why Choose Us */}
