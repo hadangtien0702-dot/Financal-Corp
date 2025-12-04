@@ -1,12 +1,60 @@
 
-import React from 'react';
-import { ChevronDown, Send, Phone, Mail, Clock, CheckCircle, HelpCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, Send, Phone, Mail, Clock, CheckCircle, HelpCircle, Loader2, AlertCircle } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert('Message sent! We will contact you shortly.');
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNNB3wQeUS847Abp42v9TAZg1I1q9ByONL563PEh2SS1BUriza1_3i1jDMMdedLKYg/exec';
+
+  const handlePost = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const date = new Date();
+
+    // Use URLSearchParams for application/x-www-form-urlencoded
+    // This format is much more reliable for Google Apps Script doPost triggers than FormData
+    const data = new URLSearchParams();
+    
+    // MAPPING KEYS EXACTLY TO YOUR GOOGLE SHEET HEADERS
+    data.append('First Name', formData.get('firstName') as string);
+    data.append('Last Name', formData.get('lastName') as string);
+    data.append('Email Address', formData.get('email') as string); // Changed from 'Email' to 'Email Address'
+    data.append('Phone Number', formData.get('phone') as string); // Changed from 'Phone' to 'Phone Number'
+    data.append('Subject', formData.get('subject') as string);
+    data.append('Message', formData.get('message') as string);
+    data.append('Created At', date.toLocaleString());
+
+    try {
+       // mode: 'no-cors' is required. 
+       // Note: Response will be 'opaque' (status 0), so we cannot check res.ok directly.
+       // We assume success if the network request doesn't throw an error.
+       await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: data,
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+       });
+       
+       setSubmitStatus('success');
+       form.reset();
+       
+       setTimeout(() => setSubmitStatus('idle'), 5000);
+
+    } catch (e) {
+      console.error('Error during fetch:', e);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <div className="bg-white">
@@ -33,46 +81,74 @@ export const ContactPage: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-blue-400 rounded-t-3xl"></div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Send us a Message</h2>
             <p className="text-gray-500 mb-6 md:mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
-            <form className="space-y-5 md:space-y-6" onSubmit={handleSubmit}>
+            
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center gap-3 animate-fade-in">
+                <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                <p className="font-medium">Message sent successfully! We will be in touch soon.</p>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-center gap-3 animate-fade-in">
+                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <p className="font-medium">Something went wrong. Please try again or call us directly.</p>
+              </div>
+            )}
+
+            <form className="space-y-5 md:space-y-6" onSubmit={handlePost}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
-                  <input type="text" id="firstName" required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="John" />
+                  <input type="text" id="firstName" name="firstName" required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="John" />
                 </div>
                 <div>
                   <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
-                  <input type="text" id="lastName" required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="Doe" />
+                  <input type="text" id="lastName" name="lastName" required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="Doe" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                  <input type="email" id="email" required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="john@example.com" />
+                  <input type="email" id="email" name="email" required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="john@example.com" />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
-                  <input type="tel" id="phone" className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="(555) 123-4567" />
+                  <input type="tel" id="phone" name="phone" className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="(555) 123-4567" />
                 </div>
               </div>
               <div>
                 <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
                 <div className="relative">
-                  <select id="subject" className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white appearance-none text-gray-700 cursor-pointer">
-                    <option>General Inquiry</option>
-                    <option>Agent Recruitment / Careers</option>
-                    <option>Life Insurance Quote</option>
-                    <option>Partnership Opportunities</option>
+                  <select id="subject" name="subject" className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white appearance-none text-gray-700 cursor-pointer">
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Agent Recruitment">Agent Recruitment / Careers</option>
+                    <option value="Life Insurance Quote">Life Insurance Quote</option>
+                    <option value="Partnership">Partnership Opportunities</option>
                   </select>
                   <ChevronDown className="absolute right-4 top-4 h-5 w-5 text-gray-400 pointer-events-none" />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-                <textarea id="message" rows={4} required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="How can we help you today?"></textarea>
+                <textarea id="message" name="message" rows={4} required className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-primary outline-none transition-all bg-gray-50 focus:bg-white placeholder-gray-400" placeholder="How can we help you today?"></textarea>
               </div>
-              <button type="submit" className="w-full bg-primary text-white font-bold py-4 px-6 rounded-xl hover:bg-blue-600 transition-all shadow-lg hover:shadow-blue-500/30 flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95 duration-200">
-                <Send className="w-5 h-5" />
-                Send Message
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className={`w-full font-bold py-4 px-6 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 transform duration-200 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed text-gray-100' : 'bg-primary text-white hover:bg-blue-600 hover:shadow-blue-500/30 hover:-translate-y-0.5 active:scale-95'}`}
+              >
+                {isSubmitting ? (
+                    <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Sending...
+                    </>
+                ) : (
+                    <>
+                        <Send className="w-5 h-5" />
+                        Send Message
+                    </>
+                )}
               </button>
             </form>
           </div>
