@@ -45,10 +45,10 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Header Section */}
-      <div className="bg-gray-50 py-16 md:py-20 border-b border-gray-100 relative overflow-hidden">
+      <div className="bg-gray-50 py-12 md:py-20 border-b border-gray-100 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">About <span className="text-primary">American Finance Corp</span></h1>
+          <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6">About <span className="text-primary">American Finance Corp</span></h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Your trusted partner in financial protection and professional growth. We are dedicated to securing futures and building legacies.
           </p>
@@ -57,7 +57,7 @@ export const AboutPage: React.FC = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center mb-20 md:mb-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center mb-16 md:mb-28">
           <div className="order-2 md:order-1 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             <div className="inline-block px-3 py-1 rounded-full bg-blue-50 text-primary font-bold text-xs uppercase tracking-widest mb-4">Our Story</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Who We Are</h2>
@@ -76,7 +76,7 @@ export const AboutPage: React.FC = () => {
         </div>
 
         {/* Mission & Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 md:mb-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-28">
           <div className="bg-gradient-to-br from-primary to-blue-600 text-white p-8 md:p-12 rounded-3xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10 blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
             <Target className="w-12 h-12 mb-6 text-blue-100 relative z-10" />
@@ -96,9 +96,9 @@ export const AboutPage: React.FC = () => {
         </div>
 
         {/* Core Values */}
-        <div className="text-center mb-20 md:mb-28">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Our Core Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="text-center mb-16 md:mb-28">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10 md:mb-12">Our Core Values</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
                 { icon: Shield, title: "Integrity", desc: "We operate with unyielding honesty and transparency in every interaction with clients and agents." },
                 { icon: Users, title: "Service", desc: "Our commitment to serving our communities is the foundation of our success." },
@@ -116,21 +116,21 @@ export const AboutPage: React.FC = () => {
         </div>
 
         {/* MEET THE TEAM SECTION - SCROLLING CAROUSEL */}
-        <div className="mb-20 md:mb-28 overflow-hidden">
-            <div className="text-center mb-12">
+        <div className="mb-16 md:mb-28 overflow-hidden">
+            <div className="text-center mb-10 md:mb-12">
                 <div className="inline-block px-3 py-1 rounded-full bg-blue-50 text-primary font-bold text-xs uppercase tracking-widest mb-4">Leadership</div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Meet Our Team</h2>
                 <p className="text-gray-600 mt-4 max-w-2xl mx-auto">Our diverse team of experts is dedicated to your financial success and professional growth.</p>
             </div>
             
             <div className="relative w-full">
-                <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
                 
                 <div className="flex animate-scroll pause-on-hover w-max">
                     {/* Render list twice for seamless looping */}
                     {[...teamMembers, ...teamMembers].map((member, idx) => (
-                        <div key={idx} className="w-72 md:w-80 mx-4 flex-shrink-0 group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                        <div key={idx} className="w-64 md:w-80 mx-3 md:mx-4 flex-shrink-0 group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
                             <div className="aspect-[4/5] overflow-hidden bg-gray-100 relative">
                                 {/* Overlay on hover */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex flex-col justify-end p-6">
@@ -164,8 +164,8 @@ export const AboutPage: React.FC = () => {
         </div>
 
         {/* Why Choose Us */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">The American Finance Corp Difference</h2>
+        <div className="mb-12 md:mb-20">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 md:mb-10 text-center">The American Finance Corp Difference</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-8 md:p-10 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow">
               <h3 className="text-2xl font-bold text-primary mb-6 border-b border-gray-200 pb-4">For Our Clients</h3>
@@ -187,12 +187,12 @@ export const AboutPage: React.FC = () => {
         </div>
 
         {/* CTA */}
-        <div className="bg-gradient-to-r from-primary to-blue-600 rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl shadow-blue-500/30 relative overflow-hidden group">
+        <div className="bg-gradient-to-r from-primary to-blue-600 rounded-3xl p-8 md:p-16 text-center text-white shadow-2xl shadow-blue-500/30 relative overflow-hidden group">
           <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-white opacity-10 blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
           <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-80 h-80 rounded-full bg-white opacity-10 blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Secure Your Future?</h2>
-            <p className="text-lg md:text-xl text-blue-100 mb-10 max-w-2xl mx-auto">Whether you need protection for your family or are looking for a lucrative career change, we are here to guide you every step of the way.</p>
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">Ready to Secure Your Future?</h2>
+            <p className="text-lg md:text-xl text-blue-100 mb-8 md:mb-10 max-w-2xl mx-auto">Whether you need protection for your family or are looking for a lucrative career change, we are here to guide you every step of the way.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/contact" className="inline-flex items-center justify-center bg-white text-primary font-bold py-4 px-10 rounded-full hover:bg-gray-50 transition-colors shadow-lg w-full sm:w-auto transform hover:-translate-y-1">Contact Us Today</Link>
             </div>

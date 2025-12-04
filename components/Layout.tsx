@@ -30,7 +30,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               <img 
                 src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110408.jpg" 
                 alt="American Finance Corp" 
-                className="h-14 w-auto object-contain"
+                className="h-12 md:h-14 w-auto object-contain"
               />
             </Link>
 
@@ -51,7 +51,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-600 hover:text-primary focus:outline-none"
+                className="text-gray-600 hover:text-primary focus:outline-none p-2"
+                aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -61,26 +62,26 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg z-[1000]">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg z-[1000] animate-fade-in-up" style={{animationDuration: '0.3s'}}>
+            <div className="px-4 pt-4 pb-6 space-y-2">
               <Link
                 to="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-3 py-4 rounded-md text-base font-bold ${mobileIsActive('/')}`}
+                className={`block px-4 py-4 rounded-lg text-base font-bold ${mobileIsActive('/')}`}
               >
                 Home
               </Link>
               <Link
                 to="/about"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-3 py-4 rounded-md text-base font-bold ${mobileIsActive('/about')}`}
+                className={`block px-4 py-4 rounded-lg text-base font-bold ${mobileIsActive('/about')}`}
               >
                 About Us
               </Link>
               <Link
                 to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-3 py-4 rounded-md text-base font-bold ${mobileIsActive('/contact')}`}
+                className={`block px-4 py-4 rounded-lg text-base font-bold ${mobileIsActive('/contact')}`}
               >
                 Contact
               </Link>
@@ -95,9 +96,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-slate-950 text-white pt-20 pb-10 border-t border-slate-900 relative z-10 font-sans">
+      <footer className="bg-slate-950 text-white pt-12 md:pt-20 pb-10 border-t border-slate-900 relative z-10 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12 md:mb-16">
             
             {/* Column 1: Brand Info (Span 4 cols) */}
             <div className="lg:col-span-4 space-y-6">
@@ -106,7 +107,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     <img 
                       src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110408.jpg" 
                       alt="American Finance Corp" 
-                      className="h-12 w-auto object-contain"
+                      className="h-10 md:h-12 w-auto object-contain"
                     />
                 </div>
               </Link>
@@ -218,9 +219,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <p className="text-slate-500 text-sm">&copy; {new Date().getFullYear()} American Finance Corp. All rights reserved.</p>
-            <div className="flex space-x-6 text-sm text-slate-500">
+            <div className="flex flex-wrap justify-center space-x-6 text-sm text-slate-500">
                 <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                 <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
                 <a href="#" className="hover:text-white transition-colors">Sitemap</a>

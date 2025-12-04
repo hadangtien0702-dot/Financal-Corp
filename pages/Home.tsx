@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
               Now Recruiting Agents Nationwide
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
               Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-[length:200%_auto] animate-pulse-slow">Legacy</span>. <br />
               Secure Their <span className="text-white">Future</span>.
             </h1>
@@ -99,19 +99,19 @@ export const HomePage: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5">
-              <Link to="/contact" className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-primary rounded-full hover:shadow-lg hover:shadow-blue-500/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary overflow-hidden">
+              <Link to="/contact" className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-primary rounded-full hover:shadow-lg hover:shadow-blue-500/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary overflow-hidden w-full sm:w-auto">
                 <span className="absolute inset-0 w-full h-full -mt-10 transition-all duration-700 ease-out transform translate-x-full translate-y-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40"></span>
                 <span className="relative flex items-center">
                    Start Your Career
                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
-              <Link to="/about" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-white border border-slate-600 hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm">
+              <Link to="/about" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-white border border-slate-600 hover:bg-white/10 hover:border-white transition-all backdrop-blur-sm w-full sm:w-auto">
                 Explore Our Services
               </Link>
             </div>
 
-            <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 text-sm text-slate-400 font-medium">
+            <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 text-sm text-slate-400 font-medium">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">
                 <CheckCircle className="w-5 h-5 text-primary" />
                 <span>Top-Tier Commission</span>
@@ -126,7 +126,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* STATS SECTION */}
-      <section className="bg-white py-16 border-b border-gray-100 relative z-10">
+      <section className="bg-white py-12 md:py-16 border-b border-gray-100 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -151,16 +151,16 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-10 text-center">Trusted by Industry Leaders</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 items-center justify-items-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-            <div className="text-xl md:text-2xl font-serif font-bold text-gray-800 cursor-default text-center hover:scale-105 transition-transform">National Life Group</div>
-            <div className="text-2xl md:text-3xl font-sans font-black text-blue-900 cursor-default tracking-tighter hover:scale-105 transition-transform">AIG</div>
-            <div className="text-xl md:text-2xl font-sans font-bold text-blue-800 cursor-default tracking-wide uppercase hover:scale-105 transition-transform">Allianz</div>
-            <div className="text-lg md:text-xl font-serif font-bold italic text-gray-700 cursor-default hover:scale-105 transition-transform">Transamerica</div>
+            <div className="text-lg md:text-2xl font-serif font-bold text-gray-800 cursor-default text-center hover:scale-105 transition-transform">National Life Group</div>
+            <div className="text-xl md:text-3xl font-sans font-black text-blue-900 cursor-default tracking-tighter hover:scale-105 transition-transform">AIG</div>
+            <div className="text-lg md:text-2xl font-sans font-bold text-blue-800 cursor-default tracking-wide uppercase hover:scale-105 transition-transform">Allianz</div>
+            <div className="text-base md:text-xl font-serif font-bold italic text-gray-700 cursor-default hover:scale-105 transition-transform">Transamerica</div>
           </div>
         </div>
       </section>
 
       {/* SPECIALIST SECTION */}
-      <section className="bg-gray-50 py-20 md:py-28 relative z-10 overflow-hidden">
+      <section className="bg-gray-50 py-16 md:py-28 relative z-10 overflow-hidden">
          {/* Decorative blob */}
          <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-100/30 skew-x-12 pointer-events-none"></div>
 
@@ -197,7 +197,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* PRODUCTS SECTION */}
-      <section className="py-24 md:py-32 bg-slate-950 text-white relative overflow-hidden">
+      <section className="py-20 md:py-32 bg-slate-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Clean Dark Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-[#0a1020] to-slate-950"></div>
@@ -224,7 +224,11 @@ export const HomePage: React.FC = () => {
                          <img 
                             src={product.image} 
                             alt={product.title} 
-                            className={`relative z-20 h-full w-auto object-contain drop-shadow-2xl transform transition-transform duration-500 ${product.title === 'Term-Life' ? 'scale-[1.45] -translate-y-6 group-hover:-translate-y-8 group-hover:scale-[1.5]' : 'group-hover:-translate-y-2 group-hover:scale-105'}`} 
+                            className={`relative z-20 h-full w-auto object-contain drop-shadow-2xl transform transition-transform duration-500 ${
+                              product.title === 'Term-Life' 
+                                ? 'scale-100 md:scale-[1.45] translate-y-0 md:-translate-y-6 group-hover:scale-105 md:group-hover:scale-[1.5] group-hover:-translate-y-2 md:group-hover:-translate-y-8' 
+                                : 'group-hover:-translate-y-2 group-hover:scale-105'
+                            }`} 
                          />
                     </div>
                     
