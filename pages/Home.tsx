@@ -224,7 +224,7 @@ export const HomePage: React.FC = () => {
                          <img 
                             src={product.image} 
                             alt={product.title} 
-                            className="relative z-20 h-full w-auto object-contain drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-2" 
+                            className={`relative z-20 h-full w-auto object-contain drop-shadow-2xl transform transition-transform duration-500 ${product.title === 'Term-Life' ? 'scale-[1.45] -translate-y-6 group-hover:-translate-y-8 group-hover:scale-[1.5]' : 'group-hover:-translate-y-2 group-hover:scale-105'}`} 
                          />
                     </div>
                     
