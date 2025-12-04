@@ -208,7 +208,7 @@ export const HomePage: React.FC = () => {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/20 rounded-full blur-[80px] transition-all duration-700 group-hover:bg-blue-500/30 pointer-events-none"></div>
                 <div className="relative z-10 transform transition-transform duration-700 hover:scale-105 hover:-translate-y-2 perspective-1000">
                   <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-blue-900/50 border border-slate-700/50 bg-slate-800/80 backdrop-blur-sm p-8 md:p-12 flex items-center justify-center min-h-[300px]">
-                    <img src="https://images.unsplash.com/photo-1626178793926-22b28830aa30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Term-Life" className="w-auto h-auto max-h-96 max-w-full object-contain drop-shadow-2xl relative z-10 rounded-md" />
+                    <img src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110323.png" alt="Term-Life" className="w-auto h-auto max-h-96 max-w-full object-contain drop-shadow-2xl relative z-10 rounded-md" />
                   </div>
                 </div>
               </div>

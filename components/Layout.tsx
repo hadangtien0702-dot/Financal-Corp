@@ -26,14 +26,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold text-gray-900 leading-none group-hover:text-primary transition-colors">
-                  American Finance
-                </span>
-                <span className="font-sans text-xs font-bold text-primary tracking-[0.2em] uppercase">
-                  Corp
-                </span>
-              </div>
+              <img 
+                src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110408.jpg" 
+                alt="American Finance Corp" 
+                className="h-16 w-auto object-contain"
+              />
             </Link>
 
             {/* Desktop Navigation */}
