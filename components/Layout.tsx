@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, MapPin, CheckCircle, ArrowRight } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, ArrowRight, Facebook, Linkedin, Instagram, Twitter } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -29,7 +30,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               <img 
                 src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110408.jpg" 
                 alt="American Finance Corp" 
-                className="h-16 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
             </Link>
 
@@ -94,75 +95,136 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800 relative z-10">
+      <footer className="bg-slate-950 text-white pt-20 pb-10 border-t border-slate-900 relative z-10 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            <div>
-              <Link to="/" className="flex flex-col mb-4 group">
-                <span className="font-serif text-2xl font-bold text-white leading-none">American Finance</span>
-                <span className="font-sans text-xs font-bold text-primary tracking-[0.2em] uppercase">Corp</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+            
+            {/* Column 1: Brand Info (Span 4 cols) */}
+            <div className="lg:col-span-4 space-y-6">
+              <Link to="/" className="inline-block">
+                <div className="bg-white p-2 rounded-lg inline-block hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-shadow duration-300">
+                    <img 
+                      src="https://jvbtqggealvhqkkmowcc.supabase.co/storage/v1/object/public/post-attachments/financial-corp/20251204-110408.jpg" 
+                      alt="American Finance Corp" 
+                      className="h-12 w-auto object-contain"
+                    />
+                </div>
               </Link>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
                 Empowering financial independence through comprehensive insurance solutions and agent development. We build legacies that last generations.
               </p>
+              
+              {/* Social Icons */}
+              <div className="flex space-x-4 pt-2">
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                    <Facebook className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                    <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                    <Instagram className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                    <Twitter className="w-5 h-5" />
+                </a>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-bold text-white mb-6 border-b-2 border-gray-700 pb-2 inline-block">Core Products</h3>
-              <ul className="space-y-3">
-                <li>
-                    <a href="https://thinksmartinsurance.com/iul-2" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-primary transition-colors text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>IUL Secrets
-                    </a>
-                </li>
-                <li>
-                    <a href="https://thinksmartinsurance.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-primary transition-colors text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>Millionaire Baby
-                    </a>
-                </li>
-                <li>
-                    <a href="https://thinksmartinsurance.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-primary transition-colors text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>Term-Life
-                    </a>
-                </li>
-                <li>
-                    <a href="https://thinksmartinsurance.com/max-funded-iul-secrets-2" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-primary transition-colors text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>Max-Funded IUL
-                    </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-white mb-6 border-b-2 border-gray-700 pb-2 inline-block">Company</h3>
-              <ul className="space-y-3">
-                <li><Link to="/" className="text-gray-400 hover:text-primary transition-colors text-sm">Home</Link></li>
-                <li><Link to="/about" className="text-gray-400 hover:text-primary transition-colors text-sm">About Us</Link></li>
-                <li><Link to="/contact" className="text-gray-400 hover:text-primary transition-colors text-sm">Contact</Link></li>
-                <li><Link to="/contact" className="text-gray-400 hover:text-primary transition-colors text-sm">Careers</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-white mb-6 border-b-2 border-gray-700 pb-2 inline-block">Contact Us</h3>
+
+            {/* Column 2: Core Products (Span 3 cols) */}
+            <div className="lg:col-span-3">
+              <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                Core Products
+                <span className="h-1 w-1 bg-primary rounded-full"></span>
+              </h3>
               <ul className="space-y-4">
-                <li className="flex items-start">
-                  <Phone className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                <li>
+                    <a href="https://thinksmartinsurance.com/iul-2" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors text-sm flex items-center group">
+                        <ArrowRight className="w-4 h-4 mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0" />
+                        <span className="group-hover:translate-x-1 transition-transform">IUL Secrets</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://thinksmartinsurance.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors text-sm flex items-center group">
+                        <ArrowRight className="w-4 h-4 mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0" />
+                        <span className="group-hover:translate-x-1 transition-transform">Millionaire Baby</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://thinksmartinsurance.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors text-sm flex items-center group">
+                        <ArrowRight className="w-4 h-4 mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0" />
+                        <span className="group-hover:translate-x-1 transition-transform">Term-Life</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://thinksmartinsurance.com/max-funded-iul-secrets-2" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors text-sm flex items-center group">
+                        <ArrowRight className="w-4 h-4 mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0" />
+                        <span className="group-hover:translate-x-1 transition-transform">Max-Funded IUL</span>
+                    </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Company (Span 2 cols) */}
+            <div className="lg:col-span-2">
+              <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                Company
+                <span className="h-1 w-1 bg-primary rounded-full"></span>
+              </h3>
+              <ul className="space-y-4">
+                <li><Link to="/" className="text-slate-400 hover:text-primary transition-colors text-sm block hover:translate-x-1 duration-200">Home</Link></li>
+                <li><Link to="/about" className="text-slate-400 hover:text-primary transition-colors text-sm block hover:translate-x-1 duration-200">About Us</Link></li>
+                <li><Link to="/contact" className="text-slate-400 hover:text-primary transition-colors text-sm block hover:translate-x-1 duration-200">Contact</Link></li>
+                <li><Link to="/contact" className="text-slate-400 hover:text-primary transition-colors text-sm block hover:translate-x-1 duration-200">Careers</Link></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact Us (Span 3 cols) */}
+            <div className="lg:col-span-3">
+              <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                Contact Us
+                <span className="h-1 w-1 bg-primary rounded-full"></span>
+              </h3>
+              <ul className="space-y-6">
+                <li className="flex items-start group">
+                  <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-primary mr-4 flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                     <Phone className="w-5 h-5" />
+                  </div>
                   <div className="flex flex-col">
-                    <a href="tel:+16787223447" className="text-gray-300 hover:text-white transition-colors font-medium">+1 678-722-3447</a>
-                    <span className="text-xs text-gray-500">Mon-Fri 9am-5pm EST</span>
+                    <span className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-0.5">Call Us</span>
+                    <a href="tel:+16787223447" className="text-gray-300 hover:text-white transition-colors font-medium text-lg">+1 678-722-3447</a>
                   </div>
                 </li>
-                <li className="flex items-start">
-                  <Mail className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
-                  <a href="mailto:support@americanfinancialcorp.org" className="text-gray-300 hover:text-white transition-colors text-sm break-all">support@americanfinancialcorp.org</a>
+                <li className="flex items-start group">
+                  <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-primary mr-4 flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-0.5">Email Us</span>
+                    <a href="mailto:support@americanfinancialcorp.org" className="text-gray-300 hover:text-white transition-colors text-sm break-all leading-relaxed">support@americanfinancialcorp.org</a>
+                  </div>
                 </li>
-                <li className="flex items-start">
-                  <MapPin className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-400 text-sm">Nationwide Service, United States</span>
+                <li className="flex items-start group">
+                  <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-primary mr-4 flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-0.5">Location</span>
+                    <span className="text-gray-400 text-sm">Nationwide Service, USA</span>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8 mt-8 text-center">
-            <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} American Finance Corp. All rights reserved.</p>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-slate-500 text-sm">&copy; {new Date().getFullYear()} American Finance Corp. All rights reserved.</p>
+            <div className="flex space-x-6 text-sm text-slate-500">
+                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+            </div>
           </div>
         </div>
       </footer>
